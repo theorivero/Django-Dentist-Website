@@ -27,6 +27,17 @@ def contact(request):
 	return render(request, 'contact.html', context)
 
 
+def about(request):
+	context = {}
+	return render(request, 'about.html', {})
+
+def pricing(request):
+	context = {}
+	return render(request, 'pricing.html', {})
+def service(request):
+	context = {}
+	return render(request, 'service.html', {})
+
 	
 
 		

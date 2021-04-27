@@ -34,9 +34,47 @@ def about(request):
 def pricing(request):
 	context = {}
 	return render(request, 'pricing.html', {})
+
 def service(request):
 	context = {}
 	return render(request, 'service.html', {})
+
+def appointment(request):
+	context = {}
+	if request.method == "POST":
+		your_name = request.POST['your-name']
+		your_phone = request.POST['your-phone']
+		your_email = request.POST['your-email']
+		your_address = request.POST['your-address']
+		your_schedule = request.POST['your-schedule']
+		your_date = request.POST['your-date']
+		your_message = request.POST['your-message']
+
+		appointment = your_name + " " + your_phone + " " + your_email + " " + your_name + " " + your_address + " " + your_schedule + " " +your_date + " " +your_message 
+
+		context = {
+					'your_name' :your_name,
+					'your_phone' :your_phone,
+					'your_email' :your_email,
+					'your_address' :your_address,
+					'your_schedule' :your_schedule,
+					'your_date' :your_date,
+					'your_message' :your_message,
+					}
+
+		send_mail(
+			f"Appointment request {your_name}", # subject
+			appointment, # message
+			your_email, # from email
+			['thrivero1@gmail.com'], # to email
+			)
+
+
+
+		return render(request, 'appointment.html', context)
+
+	else:
+		return render(request, 'home.html',{})
 
 	
 
